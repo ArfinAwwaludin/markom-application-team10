@@ -1,1 +1,3 @@
 dari repo ini dibuat beberapa branch, dimana tiap branch tersebut dibuat untuk tiap member team 10
+
+sementara ini ada dua branch dibuat yakni branch-arfin dan branch-yahya
