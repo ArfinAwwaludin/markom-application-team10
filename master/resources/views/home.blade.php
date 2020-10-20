@@ -11,14 +11,14 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <title>Company</title>
+    <title>Home</title>
   </head>
   <body>
 
     <div class="card mx-auto my-3" style="max-width: 80rem;">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="{{url('/')}}">HOME</a>
+            <a class="navbar-brand" href="{{url('/')}}">HOME</a>
   
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,17 +30,20 @@
                   Features
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{url('/company')}}">Company</a>
-                  <a class="dropdown-item" href="{{url('/employee')}}">Employee</a>
-                  <a class="dropdown-item" href="{{url('/role')}}">Role</a>
+                    <a class="dropdown-item" href="{{url('/company')}}">Company</a>
+                    <a class="dropdown-item" href="{{url('/employee')}}">Employee</a>
+                    <a class="dropdown-item" href="{{url('/role')}}">Role</a>
                 </div>
               </li>
             </ul>
           </div>
         </nav>
+
     </div>
 
-    @yield('main')
+    <div class="card mx-auto my-3" style="max-width: 80rem;">
+        <h1 class="text-center my-5">Home</h1>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

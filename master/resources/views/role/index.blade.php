@@ -1,25 +1,25 @@
-@extends('company')
+@extends('role')
 
-@section('main')
+@section('main3')
 	<div class="card mx-auto my-3" style="max-width: 80rem;">
 		<div class="card-header text-white bg-primary">
-			<h5>List Company</h5>
+			<h5>List Role</h5>
 		</div>
 
 		<div class="card-body">
 			<div class="card-body bg-light">
-				<a href="#">Home</a> <span>/</span>
+                <a href="{{url('/')}}">Home</a> <span>/</span>
 				<a href="#">Master</a> <span>/</span>
-				<a>List Company</a>
+				<a>List Role</a>
 			</div>
 
 			<div class="form">
 				<div class="form-row align-items-end my-3">
 					<div class="col-3">
-						<input class="form-control" type="text" name="" placeholder="- Select Company Code -">
+						<input class="form-control" type="text" name="" placeholder="- Select Role Code -">
 					</div>
-					<div class="col-3">
-						<input class="form-control" type="text" name="" placeholder="- Select Company Name -">
+					<div class="col-3.5">
+						<input class="form-control" type="text" name="" placeholder="- Select Role Name -">
 					</div>
 					<div class="col">
 						<input class="form-control" type="text" name="" placeholder="Created">
@@ -29,7 +29,7 @@
 					</div>
 
 					<div class="col">
-						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-btn">Add</button>
+						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-role">Add</button>
 						<button type="button" class="btn btn-warning btn-block">Search</button>
 					</div>
 				</div>
@@ -40,8 +40,8 @@
 				<thead>
 					<tr>
 						<th>No</th>
-						<th>Company Code</th>
-						<th>Compay Name</th>
+						<th>Role Code</th>
+						<th>Role Name</th>
 						<th>Created Date</th>
 						<th>Created By</th>
 						<th>Action</th>
@@ -49,32 +49,32 @@
 				</thead>
 
 				<tbody>
-					@foreach ($company as $company)
+					@foreach ($role as $role)
 					<tr>
-						<td>{{$company->id}}</td>
-						<td>{{$company->code}}</td>
-						<td>{{$company->name}}</td>
-						<td>{{$company->created_date}}</td>
-						<td>{{$company->created_by}}</td>
+						<td>{{$role->id}}</td>
+						<td>{{$role->code}}</td>
+						<td>{{$role->name}}</td>
+						<td>{{$role->created_date}}</td>
+						<td>{{$role->created_by}}</td>
 						<td>
-							<a href="{{"company/{$company->id}"}}">
+							<a href="{{"role/{$role->id}"}}">
 								<i class="fa fa-search black" style="color:black"></i>
 							</a>
 							
-							<a href="{{"company/{$company->id}/edit"}}">
+							<a href="{{"role/{$role->id}/edit"}}">
 								<i class="fa fa-pencil" style="color:black"></i>
 							</a>
 							
-							<form action="{{url("company/{$company->id}")}}" method="post" 
-								id="delete-form-{{$company->id}}" style="display: none;">
+							<form action="{{url("role/{$role->id}")}}" method="post" 
+								id="delete-form-{{$role->id}}" style="display: none;">
 								@csrf
 								@method('DELETE')
 							</form>
 
 							<a  
-								href="{{url("company/{$company->id}")}}"
+								href="{{url("role/{$role->id}")}}"
 								onclick="event.preventDefault();
-								document.getElementById('delete-form-{{$company->id}}').submit();">
+								document.getElementById('delete-form-{{$role->id}}').submit();">
 								<i class="fa fa-trash" style="color:black"></i>
 							</a>
 							
@@ -86,10 +86,10 @@
 		</div>
 
 		<!-- Modal Add Button -->
-		<div id="add-btn" class="modal fade" role="dialog">
+		<div id="add-role" class="modal fade" role="dialog">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
-					@include('company.create')
+					@include('role.create')
 				</div>
 			</div>
 		</div>
@@ -98,9 +98,9 @@
 
 	
     @if (session()->get('message1'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
+    <div class="card-body mx-auto my-3" style="max-width: 80rem;">
         <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message1')}}</strong> New company has been add with code <strong>{{$company->code}}</strong> !
+            <strong>{{session()->get('message1')}}</strong> New role has been add with code <strong>{{$role->code}}</strong> !
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -111,7 +111,7 @@
     @if (session()->get('message2'))
     <div class="card-body mx-auto" style="max-width: 80rem;">
         <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message2')}}</strong> Data company has been updated !
+            <strong>{{session()->get('message2')}}</strong> Data role has been updated !
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -122,42 +122,12 @@
     @if (session()->get('message3'))
     <div class="card-body mx-auto" style="max-width: 80rem;">
         <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message3')}}</strong> Data company has been deleted !
+            <strong>{{session()->get('message3')}}</strong> Data role has been deleted !
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
         </div>
     </div>
 	@endif
-
-	<!--
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var table = $('#datatable').DataTable();
-    
-        //start edit record
-        table.on('click','.edit', function(){
-
-			$tr = $(this).closest('tr');
-			if ($($tr).hasClass('child')){
-				$tr = $tr.prev('.parent');
-			}
-		
-			var data = table.row($tr).data();
-			console.log(data);
-		
-			$('#code').val(data[1]);
-			$('#name').val(data[2]);
-			$('#email').val(data[3]);
-			$('#address').val(data[4]);
-			$('#phone').val(data[5]);
-		
-			$('#editForm').attr('action','/'+data[0]);
-			$('#edit-btn').modal('show');
-			});
-			//end edit record
-      });
-	</script>
-	-->
 
 @endsection

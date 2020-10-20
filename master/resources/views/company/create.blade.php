@@ -30,7 +30,7 @@
     
         <div class="card-footer text-right">
             <button type="submit" class="btn btn-primary">Save</button>
-            <a href="{{url("/")}}" class="btn btn-warning">Cancel</a>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
         </div>
     </div>
 </form>

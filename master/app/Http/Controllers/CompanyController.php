@@ -7,6 +7,12 @@ use App\Models\Company;
 
 class CompanyController extends Controller
 {
+
+    /*menampilkan home page awal*/
+    public function home(){
+        return view('home');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +50,24 @@ class CompanyController extends Controller
             'address'=> $request->input('address')
         ]);
         $company->save();
-        return redirect('/')->with('message1','Data Saved!');
+        return redirect('/company')->with('message1','Data Saved!');
+
+        /* pending code
+        if($request->isMethod('post')){
+            $company = $request->all();
+
+            $company = new Company;
+            $company->code = $company['code'];
+            $company->email = $company['email'];
+            $company->phone = $company['phone'];
+            $company->name = $company['name'];
+            $company->address = $company['address'];
+
+            $company->save();
+            return redirect('/')->with('message1','Data Saved!');
+        }
+        */
+
     }
 
     /**
@@ -67,8 +90,17 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
+        
         $company = Company::find($id);
-        return view('company.edit',compact('company'));
+        return view('company.edit',compact('company'));   
+        
+
+        /* pending code
+        if($request -> isMethod('post')){
+            $company = $request->all();
+            dd($company);
+        }
+        */
     }
 
     /**
@@ -87,7 +119,7 @@ class CompanyController extends Controller
         $company->name = $request->input('name');
         $company->address = $request->input('address');
         $company->save();
-        return redirect('/')->with('message2','Data Updated!');
+        return redirect('/company')->with('message2','Data Updated!');   
     }
 
     /**
@@ -100,6 +132,6 @@ class CompanyController extends Controller
     {
         $company = Company::find($id);
         $company->delete();
-        return redirect('/')->with('message3','Data Deleted!');
+        return redirect('/company')->with('message3','Data Deleted!');
     }
 }
