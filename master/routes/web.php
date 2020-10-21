@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 /*route utk home page awal*/
 Route::get('/','App\Http\Controllers\CompanyController@home');
 
+/*route utk page list master*/
+Route::get('/master','App\Http\Controllers\CompanyController@master');
+
 /*route untuk master company*/
 Route::get('/company', 'App\Http\Controllers\CompanyController@index');
 Route::get('/company/create', 'App\Http\Controllers\CompanyController@create');
