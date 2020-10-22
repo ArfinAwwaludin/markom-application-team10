@@ -9,7 +9,7 @@
 		<div class="card-body">
 			<div class="card-body bg-light">
                 <a href="{{url('/')}}">Home</a> <span>/</span>
-				<a href="#">Master</a> <span>/</span>
+				<a href="{{url('/master')}}">Master</a> <span>/</span>
 				<a>List Role</a>
 			</div>
 

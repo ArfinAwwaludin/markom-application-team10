@@ -23,6 +23,20 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
+          <div class="btn-group mx-3">
+            <a href="{{url('/master')}}" class="btn btn-secondary-light border border-secondary">master</a>
+            <button type="button" class="btn btn-secondary-light border border-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{{url('/company')}}">Company</a>
+                  <a class="dropdown-item" href="{{url('/employee')}}">Employee</a>
+                  <a class="dropdown-item" href="{{url('/role')}}">Role</a>
+            </div>
+          </div>
+          
+          <!--
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">  
               <li class="nav-item dropdown">
@@ -37,6 +51,8 @@
               </li>
             </ul>
           </div>
+          -->
+
         </nav>
 
     </div>

@@ -19,12 +19,25 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="{{url('/')}}">HOME</a>
-  
+          
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <div class="btn-group mx-3">
+            <a href="{{url('/master')}}" class="btn btn-secondary-light border border-secondary">master</a>
+            <button type="button" class="btn btn-secondary-light border border-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{{url('/company')}}">Company</a>
+                  <a class="dropdown-item" href="{{url('/employee')}}">Employee</a>
+                  <a class="dropdown-item" href="{{url('/role')}}">Role</a>
+            </div>
+          </div>
+
+          <!--
+          <div class="collapse navbar-collapse btn-group" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto"> 
               <li class="nav-item">
                 <a class="nav-link" href="{{url('/master')}}">Master</a>
@@ -41,6 +54,8 @@
               </li>
             </ul>
           </div>
+          -->
+
         </nav>
 
     </div>
