@@ -57,11 +57,20 @@
 						<td>{{$role->created_date}}</td>
 						<td>{{$role->created_by}}</td>
 						<td>
-							<a href="{{"role/{$role->id}"}}">
+							<a href="{{"role/{$role->id}"}}" data-toggle="modal" data-target="#viewRole{{$role->id}}">
 								<i class="fa fa-search black" style="color:black"></i>
 							</a>
+
+							<!-- Modal View Button -->
+							<div class="modal fade" id="viewRole{{$role->id}}" role="dialog">
+								<div class="modal-dialog modal-md" role="document">
+									<div class="modal-content">
+										@include('role.view')
+									</div>
+								</div>
+							</div>
 							
-							<a href="{{"role/{$role->id}/edit"}}" class="btn" data-toggle="modal" data-target="#editRole{{$role->id}}">
+							<a href="{{"role/{$role->id}/edit"}}" data-toggle="modal" data-target="#editRole{{$role->id}}">
 								<i class="fa fa-pencil" style="color:black"></i>
 							</a>
 
@@ -72,20 +81,20 @@
 										@include('role.edit')
 									</div>
 								</div>
-							</div>	
+							</div>
 							
-							<form action="{{url("role/{$role->id}")}}" method="post"
-								id="delete-form-{{$role->id}}" style="display: none;">
-								@csrf
-								@method('DELETE')
-							</form>
-
-							<a  
-								href="{{url("role/{$role->id}")}}"
-								onclick="event.preventDefault();
-								document.getElementById('delete-form-{{$role->id}}').submit();">
+							<a href="" data-toggle="modal" data-target="#deleteRole{{$role->id}}">
 								<i class="fa fa-trash" style="color:black"></i>
 							</a>
+
+							<!-- Modal Delete Button -->
+							<div class="modal fade" id="deleteRole{{$role->id}}" role="dialog">
+								<div class="modal-dialog modal-sm" role="document">
+									<div class="modal-content">
+										@include('role.delete')
+									</div>
+								</div>
+							</div>
 							
 						</td>
 					</tr>
@@ -103,43 +112,49 @@
 			</div>
 		</div>
 
-		
-		
-
 	</div>
-
 	
     @if (session()->get('message1'))
-    <div class="card-body mx-auto my-3" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message1')}}</strong> New role has been add with code <strong>{{$role->code}}</strong> !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+    <div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message1')}}</strong> New role has been add with code <strong>{{$role->code}}</strong> !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
     @endif
 
     @if (session()->get('message2'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message2')}}</strong> Data role has been updated !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message2')}}</strong> Data role has been updated !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
     @endif
     
     @if (session()->get('message3'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message3')}}</strong> Data role has been deleted !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message3')}}</strong> Data role has been deleted !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 	@endif
 
 @endsection
+
+<!--
+<form action="{{url("role/{$role->id}")}}" method="post"
+	id="delete-form-{{$role->id}}" style="display: none;">
+	@csrf
+	@method('DELETE')
+</form>
+
+<a  
+	href="{{url("role/{$role->id}")}}"
+	onclick="event.preventDefault();
+	document.getElementById('delete-form-{{$role->id}}').submit();"
+	class="btn btn-danger">
+	hapus
+</a>
+-->

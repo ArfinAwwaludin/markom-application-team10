@@ -1,12 +1,9 @@
-@extends('role')
-
-@section('main3')
-<form action="{{url("/role/{$role->id}")}}" method="POST">
+<form action="" method="POST">
 @csrf
 @method('PATCH')
-    <div class="card mx-auto my-3" style="max-width: 80rem;">
+    <div class="card">
         <div class="card-header text-white bg-primary">
-            <h5>Add Role</h5>
+            <h5>View Role</h5>
         </div>
         
         <div class="card-body">
@@ -27,9 +24,7 @@
         </div>
     
         <div class="card-footer text-right">
-            <a href="{{url("/role")}}" class="btn btn-warning">Close</a>
-            <!--<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>-->
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
         </div>
     </div>
 </form>
-@endsection

@@ -3,7 +3,7 @@
 @method('PATCH')
     <div class="card">
         <div class="card-header text-white bg-primary">
-            <h5>Add Role</h5>
+            <h5>Edit Role</h5>
         </div>
         
         <div class="card-body">
