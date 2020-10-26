@@ -29,23 +29,6 @@
                   <a class="dropdown-item" href="{{url('/role')}}">Role</a>
             </div>
           </div>
-
-          <!--
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">  
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Features
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{url('/company')}}">Company</a>
-                  <a class="dropdown-item" href="{{url('/employee')}}">Employee</a>
-                  <a class="dropdown-item" href="{{url('/role')}}">Role</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        -->
         
         </nav>
     </div>

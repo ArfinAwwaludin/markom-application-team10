@@ -61,11 +61,20 @@
 								<i class="fa fa-search black" style="color:black"></i>
 							</a>
 							
-							<a href="{{"role/{$role->id}/edit"}}">
+							<a href="{{"role/{$role->id}/edit"}}" class="btn" data-toggle="modal" data-target="#editRole{{$role->id}}">
 								<i class="fa fa-pencil" style="color:black"></i>
 							</a>
+
+							<!-- Modal Edit Button -->
+							<div class="modal fade" id="editRole{{$role->id}}" role="dialog">
+								<div class="modal-dialog modal-md" role="document">
+									<div class="modal-content">
+										@include('role.edit')
+									</div>
+								</div>
+							</div>	
 							
-							<form action="{{url("role/{$role->id}")}}" method="post" 
+							<form action="{{url("role/{$role->id}")}}" method="post"
 								id="delete-form-{{$role->id}}" style="display: none;">
 								@csrf
 								@method('DELETE')
@@ -86,13 +95,16 @@
 		</div>
 
 		<!-- Modal Add Button -->
-		<div id="add-role" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-lg" role="document">
+		<div class="modal fade" id="add-role" role="dialog">
+			<div class="modal-dialog modal-md" role="document">
 				<div class="modal-content">
 					@include('role.create')
 				</div>
 			</div>
 		</div>
+
+		
+		
 
 	</div>
 

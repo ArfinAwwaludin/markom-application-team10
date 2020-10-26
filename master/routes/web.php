@@ -40,6 +40,6 @@ Route::get('employee/{id}','App\Http\Controllers\EmployeeController@show');
 Route::get('/role','App\Http\Controllers\RoleController@index');
 Route::post('/role','App\Http\Controllers\RoleController@store');
 Route::get('/role/{id}/edit','App\Http\Controllers\RoleController@edit');
-Route::patch('/role/{id}','App\Http\Controllers\RoleController@update');
+Route::patch('/role/{id}','App\Http\Controllers\RoleController@update')->name('role.update');
 Route::get('role/{id}','App\Http\Controllers\RoleController@show');
 Route::delete('/role/{id}', 'App\Http\Controllers\RoleController@destroy')->name('hapus');
