@@ -1,10 +1,7 @@
-@extends('company')
-
-@section('main')
-<form action="{{"/company/{$company->id}"}}" method="get">
+<form action="" method="get">
 @method('GET')
 @csrf
-    <div class="card mx-auto my-3" style="max-width: 80rem;">
+    <div class="card">
         <div class="card-header text-white bg-primary">
             <h5>View Company {{$company->name}}</h5>
         </div>
@@ -35,9 +32,7 @@
             </div>        
 
             <div class="card-footer text-right">
-                <a href="{{url("/company")}}" class="btn btn-warning">Close</a>
-                <!--<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>-->
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
             </div> 
     </div>
 </form>
-@endsection

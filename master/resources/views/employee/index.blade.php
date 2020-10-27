@@ -62,26 +62,44 @@
 						<td>{{$emp->created_date}}</td>
 						<td>{{$emp->created_by}}</td>
 						<td>
-							<a href="{{"employee/{$emp->id}"}}">
+							<a href="{{"employee/{$emp->id}"}}" data-toggle="modal" data-target="#viewEmp{{$emp->id}}">
 								<i class="fa fa-search black" style="color:black"></i>
 							</a>
+
+							<!-- Modal View Button -->
+							<div id="viewEmp{{$emp->id}}" class="modal fade" role="dialog">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										@include('employee.view')
+									</div>
+								</div>
+							</div>
 							
-							<a href="{{"employee/{$emp->id}/edit"}}">
+							<a href="{{"employee/{$emp->id}/edit"}}" data-toggle="modal" data-target="#editModal{{$emp->id}}">
 								<i class="fa fa-pencil" style="color:black"></i>
 							</a>
-							
-							<form action="{{url("employee/{$emp->id}")}}" method="post" 
-								id="delete-form-{{$emp->id}}" style="display: none;">
-								@csrf
-								@method('DELETE')
-							</form>
 
-							<a  
-								href="{{url("employee/{$emp->id}")}}"
-								onclick="event.preventDefault();
-								document.getElementById('delete-form-{{$emp->id}}').submit();">
+							<!-- Modal Add Button -->
+							<div id="editModal{{$emp->id}}" class="modal fade" role="dialog">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										@include('employee.edit')
+									</div>
+								</div>
+							</div>
+							
+							<a href="" data-toggle="modal" data-target="#deleteEmp{{$emp->id}}">
 								<i class="fa fa-trash" style="color:black"></i>
 							</a>
+
+							<!-- Modal Delete Button -->
+							<div class="modal fade" id="deleteEmp{{$emp->id}}" role="dialog">
+								<div class="modal-dialog modal-sm" role="document">
+									<div class="modal-content">
+										@include('employee.delete')
+									</div>
+								</div>
+							</div>
 							
 						</td>
 					</tr>
@@ -103,36 +121,30 @@
 
 	
     @if (session()->get('message1'))
-    <div class="card-body mx-auto my-3" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message1')}}</strong> New employee has been add with code <strong>{{$emp->employee_number}}</strong> !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message1')}}</strong> New employee has been add with code <strong>{{$emp->employee_number}}</strong> !
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+	</div>
     @endif
 
     @if (session()->get('message2'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message2')}}</strong> Data employee has been updated !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message2')}}</strong> Data employee has been updated !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
     @endif
     
     @if (session()->get('message3'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message3')}}</strong> Data employee has been deleted !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message3')}}</strong> Data employee has been deleted !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 	@endif
 
 @endsection

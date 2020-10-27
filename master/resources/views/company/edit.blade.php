@@ -1,10 +1,7 @@
-@extends('company')
-
-@section('main')
-<form action="{{url("/company/{$company->id}")}}" method="POST">
+<form action="{{route('company.update',$company)}}" method="POST">
 @csrf
 @method('PATCH')
-    <div class="card mx-auto my-3" style="max-width: 80rem;">
+    <div class="card">
         <div class="card-header text-white bg-primary">
             <h5>Edit Company</h5>
         </div>
@@ -34,9 +31,7 @@
 
         <div class="card-footer text-right">
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{url("/company")}}" class="btn btn-warning">Cancel</a>
-            <!--<button type="button" class="btn btn-warning">Cancel</button>-->
+            <button type="button" class="btn btn-warning">Cancel</button>
         </div>
     </div>
 </form>
-@endsection

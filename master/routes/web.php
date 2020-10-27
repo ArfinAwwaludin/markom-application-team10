@@ -32,7 +32,7 @@ Route::get('company/{id}', 'App\Http\Controllers\CompanyController@show');
 Route::get('/employee','App\Http\Controllers\EmployeeController@index');
 Route::post('/employee','App\Http\Controllers\EmployeeController@store');
 Route::get('/employee/{id}/edit','App\Http\Controllers\EmployeeController@edit');
-Route::patch('/employee/{id}','App\Http\Controllers\EmployeeController@update');
+Route::patch('/employee/{id}','App\Http\Controllers\EmployeeController@update')->name('employee.update');
 Route::delete('/employee/{id}', 'App\Http\Controllers\EmployeeController@destroy')->name('hapus');
 Route::get('employee/{id}','App\Http\Controllers\EmployeeController@show');
 

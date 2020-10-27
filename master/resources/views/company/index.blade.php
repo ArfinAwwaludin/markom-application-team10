@@ -57,26 +57,44 @@
 						<td>{{$company->created_date}}</td>
 						<td>{{$company->created_by}}</td>
 						<td>
-							<a href="{{"company/{$company->id}"}}">
+							<a href="{{"company/{$company->id}"}}" data-toggle="modal" data-target="#viewComp{{$company->id}}">
 								<i class="fa fa-search black" style="color:black"></i>
 							</a>
+
+							<!-- Modal View Button -->
+							<div id="viewComp{{$company->id}}" class="modal fade" role="dialog">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										@include('company.view')
+									</div>
+								</div>
+							</div>
 							
-							<a href="{{"company/{$company->id}/edit"}}">
+							<a href="{{"company/{$company->id}/edit"}}" data-toggle="modal" data-target="#editComp{{$company->id}}">
 								<i class="fa fa-pencil" style="color:black"></i>
 							</a>
-							
-							<form action="{{url("company/{$company->id}")}}" method="post" 
-								id="delete-form-{{$company->id}}" style="display: none;">
-								@csrf
-								@method('DELETE')
-							</form>
 
-							<a  
-								href="{{url("company/{$company->id}")}}"
-								onclick="event.preventDefault();
-								document.getElementById('delete-form-{{$company->id}}').submit();">
+							<!-- Modal Edit Button -->
+							<div id="editComp{{$company->id}}" class="modal fade" role="dialog">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										@include('company.edit')
+									</div>
+								</div>
+							</div>
+							
+							<a href="" data-toggle="modal" data-target="#deleteComp{{$company->id}}">
 								<i class="fa fa-trash" style="color:black"></i>
 							</a>
+
+							<!-- Modal Delete Button -->
+							<div id="deleteComp{{$company->id}}" class="modal fade" role="dialog">
+								<div class="modal-dialog modal-sm" role="document">
+									<div class="modal-content">
+										@include('company.delete')
+									</div>
+								</div>
+							</div>
 							
 						</td>
 					</tr>
@@ -98,36 +116,30 @@
 
 	
     @if (session()->get('message1'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message1')}}</strong> New company has been add with code <strong>{{$company->code}}</strong> !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message1')}}</strong> New company has been add with code <strong>{{$company->code}}</strong> !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
     @endif
 
     @if (session()->get('message2'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message2')}}</strong> Data company has been updated !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message2')}}</strong> Data company has been updated !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
     @endif
     
     @if (session()->get('message3'))
-    <div class="card-body mx-auto" style="max-width: 80rem;">
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session()->get('message3')}}</strong> Data company has been deleted !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-    </div>
+	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+		<strong>{{session()->get('message3')}}</strong> Data company has been deleted !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 	@endif
 
 	<!--

@@ -1,12 +1,9 @@
-@extends('employee')
-
-@section('main2')
-<form action="{{url("/employee/{$employee->id}")}}" method="POST">
+<form action="" method="POST">
 @csrf
 @method('PATCH')
-    <div class="card mx-auto my-3" style="max-width: 80rem;">
+    <div class="card">
         <div class="card-header text-white bg-primary">
-            <h5>Add Employee</h5>
+            <h5>View Employee</h5>
         </div>
         
         <div class="card-body">
@@ -18,9 +15,9 @@
                     <label for="last_name" class="col col-form-label my-1">Last Name</label>
                 </div>
                 <div class="col">
-                    <input class="form-control my-2" type="text" name="employee_number" value="{{$employee->employee_number}}">
-                    <input class="form-control my-2" type="text" name="first_name" value="{{$employee->first_name}}">
-                    <input class="form-control my-2" type="text" name="last_name" value="{{$employee->last_name}}">
+                    <input class="form-control my-2" type="text" name="employee_number" value="{{$emp->employee_number}}">
+                    <input class="form-control my-2" type="text" name="first_name" value="{{$emp->first_name}}">
+                    <input class="form-control my-2" type="text" name="last_name" value="{{$emp->last_name}}">
                 </div>
                 <div class="col">
                     <label for="name" class="col col-form-label my-1">*Company Name</label>
@@ -28,16 +25,14 @@
                 </div>
                 <div class="col">
                     <input class="form-control my-2" type="text" name="name" value="Company Name" value="PT. company name">
-                    <input class="form-control my-2" type="text" name="email" value="{{$employee->email}}">
+                    <input class="form-control my-2" type="text" name="email" value="{{$emp->email}}">
                 </div>
             </div>
             </fieldset>
         </div>
     
         <div class="card-footer text-right">
-            <a href="{{url("/employee")}}" class="btn btn-warning">Close</a>
-            <!--<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>-->
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
         </div>
     </div>
 </form>
-@endsection
