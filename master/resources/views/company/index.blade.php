@@ -57,6 +57,7 @@
 						<td>{{$company->created_date}}</td>
 						<td>{{$company->created_by}}</td>
 						<td>
+							<!--button view-->
 							<a href="{{"company/{$company->id}"}}" data-toggle="modal" data-target="#viewComp{{$company->id}}">
 								<i class="fa fa-search black" style="color:black"></i>
 							</a>
@@ -70,19 +71,12 @@
 								</div>
 							</div>
 							
-							<a href="{{"company/{$company->id}/edit"}}" data-toggle="modal" data-target="#editComp{{$company->id}}">
+							<!--button edit-->
+							<a href="#editComp{{$company->id}}" data-toggle="modal">
 								<i class="fa fa-pencil" style="color:black"></i>
 							</a>
-
-							<!-- Modal Edit Button -->
-							<div id="editComp{{$company->id}}" class="modal fade" role="dialog">
-								<div class="modal-dialog modal-lg" role="document">
-									<div class="modal-content">
-										@include('company.edit')
-									</div>
-								</div>
-							</div>
 							
+							<!--button delete-->
 							<a href="" data-toggle="modal" data-target="#deleteComp{{$company->id}}">
 								<i class="fa fa-trash" style="color:black"></i>
 							</a>
@@ -95,7 +89,38 @@
 									</div>
 								</div>
 							</div>
-							
+
+							<!-- Modal Edit Button -->
+							<form action="{{route('company.update', $company)}}" method="POST">
+							@csrf
+							@method('PATCH')
+							<div id="editComp{{$company->id}}" class="modal fade" role="dialog">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										@include('company.edit')
+									</div>
+								</div>
+							</div>
+	
+							<!-- Modal Confirmation Update -->
+							<div id="confUpdate{{$company->id}}" class="modal fade" role="dialog" data-backdrop="static">
+								<div class="modal-dialog modal-sm" role="document">
+									<div class="modal-content">
+										<div class="card bg-light">
+											<div>
+												<button type="button" class="btn btn-danger btn-sm float-right" data-dismiss="modal" aria-hidden="true">×</button>
+											</div>
+											<h6 class="text-center my-3">Update Data?</h6>
+											<div class="col my-2 text-center">
+												<button type="submit" class="btn btn-primary">Update</button>
+												<a href="#" type="button" class="btn btn-warning text-white" data-dismiss="modal">Cancel</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							</form>
+
 						</td>
 					</tr>
 					@endforeach
@@ -113,63 +138,32 @@
 		</div>
 
 	</div>
-
 	
-    @if (session()->get('message1'))
-	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
-		<strong>{{session()->get('message1')}}</strong> New company has been add with code <strong>{{$company->code}}</strong> !
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-    @endif
+@if (session()->get('message1'))
+<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+	<strong>{{session()->get('message1')}}</strong> New company has been add with code <strong>{{$company->code}}</strong> !
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+@endif
 
-    @if (session()->get('message2'))
-	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
-		<strong>{{session()->get('message2')}}</strong> Data company has been updated !
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-    @endif
-    
-    @if (session()->get('message3'))
-	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
-		<strong>{{session()->get('message3')}}</strong> Data company has been deleted !
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	@endif
+@if (session()->get('message2'))
+<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+	<strong>{{session()->get('message2')}}</strong> Data company has been updated !
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+@endif
 
-	<!--
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var table = $('#datatable').DataTable();
-    
-        //start edit record
-        table.on('click','.edit', function(){
-
-			$tr = $(this).closest('tr');
-			if ($($tr).hasClass('child')){
-				$tr = $tr.prev('.parent');
-			}
-		
-			var data = table.row($tr).data();
-			console.log(data);
-		
-			$('#code').val(data[1]);
-			$('#name').val(data[2]);
-			$('#email').val(data[3]);
-			$('#address').val(data[4]);
-			$('#phone').val(data[5]);
-		
-			$('#editForm').attr('action','/'+data[0]);
-			$('#edit-btn').modal('show');
-			});
-			//end edit record
-      });
-	</script>
-	-->
+@if (session()->get('message3'))
+<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
+	<strong>{{session()->get('message3')}}</strong> Data company has been deleted !
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+@endif
 
 @endsection

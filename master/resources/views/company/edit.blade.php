@@ -1,6 +1,4 @@
-<form action="{{route('company.update',$company)}}" method="POST">
-@csrf
-@method('PATCH')
+
     <div class="card">
         <div class="card-header text-white bg-primary">
             <h5>Edit Company</h5>
@@ -30,8 +28,9 @@
         </div>
 
         <div class="card-footer text-right">
-            <button type="submit" class="btn btn-primary">Update</button>
-            <button type="button" class="btn btn-warning">Cancel</button>
+            <!--<button class="btn btn-primary" data-toggle="modal" data-target="#confUpdate">Update</button>-->
+            <!--<button type="button" class="btn btn-warning text-white" data-dismiss="modal">Cancel</button>-->
+            <a data-toggle="modal" href="#confUpdate{{$company->id}}" class="btn btn-primary">Update</a>
+            <a href="#" data-dismiss="modal" class="btn btn-warning text-white">Cancel</a>
         </div>
     </div>
-</form>

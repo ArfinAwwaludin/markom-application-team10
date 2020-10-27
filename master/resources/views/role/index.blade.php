@@ -153,8 +153,7 @@
 <a  
 	href="{{url("role/{$role->id}")}}"
 	onclick="event.preventDefault();
-	document.getElementById('delete-form-{{$role->id}}').submit();"
-	class="btn btn-danger">
-	hapus
+	document.getElementById('delete-form-{{$role->id}}').submit();">
+	<i class="fa fa-trash" style="color:black"></i>
 </a>
 -->
