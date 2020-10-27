@@ -49,21 +49,21 @@
 				</thead>
 
 				<tbody>
-					@foreach ($company as $company)
+					@foreach ($company as $comp)
 					<tr>
-						<td>{{$company->id}}</td>
-						<td>{{$company->code}}</td>
-						<td>{{$company->name}}</td>
-						<td>{{$company->created_date}}</td>
-						<td>{{$company->created_by}}</td>
+						<td>{{$comp->id}}</td>
+						<td>{{$comp->code}}</td>
+						<td>{{$comp->name}}</td>
+						<td>{{$comp->created_date}}</td>
+						<td>{{$comp->created_by}}</td>
 						<td>
 							<!--button view-->
-							<a href="{{"company/{$company->id}"}}" data-toggle="modal" data-target="#viewComp{{$company->id}}">
+							<a href="{{"company/{$comp->id}"}}" data-toggle="modal" data-target="#viewComp{{$comp->id}}">
 								<i class="fa fa-search black" style="color:black"></i>
 							</a>
 
 							<!-- Modal View Button -->
-							<div id="viewComp{{$company->id}}" class="modal fade" role="dialog">
+							<div id="viewComp{{$comp->id}}" class="modal fade" role="dialog">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
 										@include('company.view')
@@ -72,17 +72,17 @@
 							</div>
 							
 							<!--button edit-->
-							<a href="#editComp{{$company->id}}" data-toggle="modal">
+							<a href="#editComp{{$comp->id}}" data-toggle="modal">
 								<i class="fa fa-pencil" style="color:black"></i>
 							</a>
 							
 							<!--button delete-->
-							<a href="" data-toggle="modal" data-target="#deleteComp{{$company->id}}">
+							<a href="" data-toggle="modal" data-target="#deleteComp{{$comp->id}}">
 								<i class="fa fa-trash" style="color:black"></i>
 							</a>
 
 							<!-- Modal Delete Button -->
-							<div id="deleteComp{{$company->id}}" class="modal fade" role="dialog">
+							<div id="deleteComp{{$comp->id}}" class="modal fade" role="dialog">
 								<div class="modal-dialog modal-sm" role="document">
 									<div class="modal-content">
 										@include('company.delete')
@@ -91,10 +91,10 @@
 							</div>
 
 							<!-- Modal Edit Button -->
-							<form action="{{route('company.update', $company)}}" method="POST">
+							<form action="{{route('company.update', $comp)}}" method="POST">
 							@csrf
 							@method('PATCH')
-							<div id="editComp{{$company->id}}" class="modal fade" role="dialog">
+							<div id="editComp{{$comp->id}}" class="modal fade" role="dialog">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
 										@include('company.edit')
@@ -103,7 +103,7 @@
 							</div>
 	
 							<!-- Modal Confirmation Update -->
-							<div id="confUpdate{{$company->id}}" class="modal fade" role="dialog" data-backdrop="static">
+							<div id="confUpdate{{$comp->id}}" class="modal fade" role="dialog" data-backdrop="static">
 								<div class="modal-dialog modal-sm" role="document">
 									<div class="modal-content">
 										<div class="card bg-light">
@@ -126,8 +126,15 @@
 					@endforeach
 				</tbody>
 			</table>
-		</div>
+			
+			<nav aria-label="Page navigation" class="text-right">
+				<ul class="pagination">
+					{{$company->links()}}
+				</ul>
+			  </nav>
 
+		</div>
+		
 		<!-- Modal Add Button -->
 		<div id="add-btn" class="modal fade" role="dialog">
 			<div class="modal-dialog modal-lg" role="document">
@@ -141,7 +148,7 @@
 	
 @if (session()->get('message1'))
 <div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
-	<strong>{{session()->get('message1')}}</strong> New company has been add with code <strong>{{$company->code}}</strong> !
+	<strong>{{session()->get('message1')}}</strong> New company has been add with code <strong>{{$comp->code}}</strong> !
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>

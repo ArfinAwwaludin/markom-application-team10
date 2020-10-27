@@ -1,4 +1,4 @@
-<form action="{{url("company/{$company->id}")}}" method="post">
+<form action="{{url("company/{$comp->id}")}}" method="post">
     @csrf
     @method('DELETE')
     <div class="card bg-light">

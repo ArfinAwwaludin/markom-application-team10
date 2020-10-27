@@ -12,17 +12,17 @@
                     <label for="phone" class="col col-form-label my-1">Phone</label>
                 </div>
                 <div class="col">
-                    <input class="form-control my-2" type="text" value="{{$company->code}}" name="code">
-                    <input class="form-control my-2" type="text" value="{{$company->email}}" name="email">
-                    <input class="form-control my-2" type="text" value="{{$company->phone}}" name="phone">
+                    <input class="form-control my-2" type="text" value="{{$comp->code}}" name="code">
+                    <input class="form-control my-2" type="text" value="{{$comp->email}}" name="email">
+                    <input class="form-control my-2" type="text" value="{{$comp->phone}}" name="phone">
                 </div>
                 <div class="col">
                     <label for="name" class="col col-form-label my-1">*Company Name</label>
                     <label for="address" class="col col-form-label my-1">Address</label>
                 </div>
                 <div class="col">
-                    <input class="form-control my-2" type="text" value="{{$company->name}}" name="name">
-                    <textarea class="form-control" name="address">{{$company->address}}</textarea>
+                    <input class="form-control my-2" type="text" value="{{$comp->name}}" name="name">
+                    <textarea class="form-control" name="address">{{$comp->address}}</textarea>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="card-footer text-right">
             <!--<button class="btn btn-primary" data-toggle="modal" data-target="#confUpdate">Update</button>-->
             <!--<button type="button" class="btn btn-warning text-white" data-dismiss="modal">Cancel</button>-->
-            <a data-toggle="modal" href="#confUpdate{{$company->id}}" class="btn btn-primary">Update</a>
+            <a data-toggle="modal" href="#confUpdate{{$comp->id}}" class="btn btn-primary">Update</a>
             <a href="#" data-dismiss="modal" class="btn btn-warning text-white">Cancel</a>
         </div>
     </div>
