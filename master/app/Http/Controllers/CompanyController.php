@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class CompanyController extends Controller
@@ -27,7 +29,7 @@ class CompanyController extends Controller
     public function index()
     {
         //$company = Company::all()->paginate(5);
-        $company = Company::simplePaginate(5);
+        $company = Company::paginate(5);
         return view('company.index',compact('company'));
     }
 

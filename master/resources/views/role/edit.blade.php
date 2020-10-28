@@ -14,9 +14,9 @@
                     <label for="description" class="col col-form-label my-1">Description</label>
                 </div>
                 <div class="col">
-                    <input class="form-control my-2" type="text" name="code" value="{{$role->code}}">
-                    <input class="form-control my-2" type="text" name="name" value="{{$role->name}}">
-                    <input class="form-control my-2" type="text" name="description" value="{{$role->description}}">
+                    <input class="form-control my-2" type="text" name="code" value="{{$rol->code}}">
+                    <input class="form-control my-2" type="text" name="name" value="{{$rol->name}}">
+                    <input class="form-control my-2" type="text" name="description" value="{{$rol->description}}">
                 </div>
             </div>
         </div>

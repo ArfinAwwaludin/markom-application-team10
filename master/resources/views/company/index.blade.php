@@ -126,12 +126,10 @@
 					@endforeach
 				</tbody>
 			</table>
-			
-			<nav aria-label="Page navigation" class="text-right">
-				<ul class="pagination">
-					{{$company->links()}}
-				</ul>
-			  </nav>
+
+			<div class="pagination justify-content-end">
+				{{$company->links()}}
+			</div>
 
 		</div>
 		

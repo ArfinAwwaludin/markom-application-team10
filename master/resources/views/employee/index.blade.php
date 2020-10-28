@@ -106,6 +106,11 @@
 					@endforeach
 				</tbody>
 			</table>
+
+			<div class="pagination justify-content-end">
+				{{$employee->links()}}
+			</div>
+
 		</div>
 
 		<!-- Modal Add Button -->
