@@ -1,4 +1,4 @@
-<form action="{{route('role.update', $role)}}" method="POST">
+<form action="{{route('role.update', $rol)}}" method="POST">
 @csrf
 @method('PATCH')
     <div class="card">

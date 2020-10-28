@@ -14,25 +14,27 @@
 			</div>
 
 			<div class="form">
+				<form action="{{url()->current()}}" method="GET">
 				<div class="form-row align-items-end my-3">
 					<div class="col-3">
-						<input class="form-control" type="text" name="" placeholder="- Select Role Code -">
+						<input value="{{request('keyword1')}}" class="form-control" type="text" name="keyword1" placeholder="- Select Role Code -">
 					</div>
 					<div class="col-3.5">
-						<input class="form-control" type="text" name="" placeholder="- Select Role Name -">
+						<input value="{{request('keyword2')}}" class="form-control" type="text" name="keyword2" placeholder="- Select Role Name -">
 					</div>
 					<div class="col">
-						<input class="form-control" type="text" name="" placeholder="Created">
+						<input value="{{request('keyword3')}}" class="form-control" type="text" name="keyword3" placeholder="Created">
 					</div>
 					<div class="col">
-						<input class="form-control" type="text" name="" placeholder="Created By">
+						<input value="{{request('keyword4')}}" class="form-control" type="text" name="keyword4" placeholder="Created By">
 					</div>
 
 					<div class="col">
 						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-role">Add</button>
-						<button type="button" class="btn btn-warning btn-block">Search</button>
+						<button type="submit" class="btn btn-warning btn-block">Search</button>
 					</div>
 				</div>
+				</form>
 			</div>
 
 			<!--table handling -->
@@ -147,18 +149,3 @@
 	@endif
 
 @endsection
-
-<!--
-<form action="{{url("role/{$rol->id}")}}" method="post"
-	id="delete-form-{{$rol->id}}" style="display: none;">
-	@csrf
-	@method('DELETE')
-</form>
-
-<a  
-	href="{{url("role/{$rol->id}")}}"
-	onclick="event.preventDefault();
-	document.getElementById('delete-form-{{$rol->id}}').submit();">
-	<i class="fa fa-trash" style="color:black"></i>
-</a>
--->

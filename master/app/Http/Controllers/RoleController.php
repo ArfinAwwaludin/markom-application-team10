@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class RoleController extends Controller
 {
@@ -12,10 +14,47 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $role = Role::paginate(5);
+        /*
+        //$role = Role::paginate(5);
+
+        $code = $request->get('code');
+        $role = Role::all();
+
+        if($code){
+            $role = Role::where("code","LIKE","%$code%")->get();
+        }
+
         return view('role.index',compact('role'));
+         */
+        //////////////////////////////////////////////////////////////////////////////////////
+
+        $this->validate($request, [
+            'limit' => 'integer',
+        ]);
+
+        $role = Role::
+        when($request->keyword1, function($query) use($request){
+            $query->where('code','like',"%{$request->keyword1}%");
+        })
+        ->when($request->keyword2, function($query) use($request){
+            $query->where('name','like',"%{$request->keyword2}%");
+        })
+        ->when($request->keyword3, function($query) use($request){
+            $query->where('created_date','like',"%{$request->keyword3}%");
+        })
+        ->when($request->keyword4, function($query) use($request){
+            $query->where('created_by','like',"%{$request->keyword4}%");
+        })->paginate($request->limit ?? 5);
+
+        $role->appends($request->only('keyword1','limit'));
+        $role->appends($request->only('keyword2','limit'));
+        $role->appends($request->only('keyword3','limit'));
+        $role->appends($request->only('keyword4','limit'));
+
+        return view('role.index',compact('role'));
+        
     }
 
     /**
@@ -98,3 +137,21 @@ class RoleController extends Controller
         return redirect('/role')->with('message3','Data Deleted!');
     }
 }
+
+/*
+// utn keperluan delete data tp pake fave icon
+<!--
+<form action="{{url("role/{$rol->id}")}}" method="post"
+	id="delete-form-{{$rol->id}}" style="display: none;">
+	@csrf
+	@method('DELETE')
+</form>
+
+<a  
+	href="{{url("role/{$rol->id}")}}"
+	onclick="event.preventDefault();
+	document.getElementById('delete-form-{{$rol->id}}').submit();">
+	<i class="fa fa-trash" style="color:black"></i>
+</a>
+-->
+*/
