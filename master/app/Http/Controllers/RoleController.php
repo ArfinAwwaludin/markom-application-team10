@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Carbon\Carbon;
 
 class RoleController extends Controller
 {
@@ -17,15 +18,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         /*
-        //$role = Role::paginate(5);
-
-        $code = $request->get('code');
-        $role = Role::all();
-
-        if($code){
-            $role = Role::where("code","LIKE","%$code%")->get();
-        }
-
+        $role = Role::paginate(5);
         return view('role.index',compact('role'));
          */
         //////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +26,8 @@ class RoleController extends Controller
         $this->validate($request, [
             'limit' => 'integer',
         ]);
+
+        //$role2 = Role::whereDate('created_date','2020-10-30')->get();
 
         $role = Role::
         when($request->keyword1, function($query) use($request){
@@ -42,7 +37,7 @@ class RoleController extends Controller
             $query->where('name','like',"%{$request->keyword2}%");
         })
         ->when($request->keyword3, function($query) use($request){
-            $query->where('created_date','like',"%{$request->keyword3}%");
+            $query->whereDate('created_date', Carbon::parse($request->keyword3)->format('Y-m-d'));
         })
         ->when($request->keyword4, function($query) use($request){
             $query->where('created_by','like',"%{$request->keyword4}%");
@@ -64,9 +59,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -75,13 +70,113 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role([
-            'code'=>$request->input('code'),
-            'name'=>$request->input('name'),
-            'description'=>$request->input('description'),
+        /* example
+        $order = new Order;
+        $order->user_id = Auth()->id();
+        $latestOrder = App\Order::orderBy('created_at','DESC')->first();
+        $order->order_nr = '#'.str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
+        $order->save();
+        */
+        ///////////////////////////////////
+        /*works but not properly when first input
+        $role = new Role();
+        $role->id = Auth()->id();
+        $latestId = Role::orderBy('id')->first();
+        $role->code = 'RO'.str_pad($latestId->id + 1, 4, "0", STR_PAD_LEFT);
+        ///////////////////////////////////
+        $name = 'Laravel';
+        $email = 'mail@laravel.web.id';
+
+        $user = \App\User::whereEmail($email)->whereName($name)->first();
+
+        if (! empty($user)) {
+        $user = \App\User::create([
+            'name' => $name,
+            'email' => $email,
         ]);
+        }
+        return $user;
+        */
+        ///////////////////////////////////
+        /*
+        $role = new Role();
+        //ngambil value id
+        $role->id = Auth()->id();
+        //deklarasi var dgn value RO0001
+        $code_first = 'RO0001';
+        //ngambil value id trus diassign ke $code_value
+        $code_value = Role::orderBy('id','desc')->first();
+        //if else utk input row pertama kalo id nya masih kosong/belum ada
+        if (! empty($code_value)) {
+        $code_value = Role::create([
+            'code' => $code_first,
+            'name' => $name,
+            'description' => $description
+        ]);
+        }
+        else{
+            //$role->code = $request->code;
+            $role->code = 'RO'.str_pad($code_value->id + 1, 4, "0", STR_PAD_LEFT);
+            $role->name = $request->name;
+            $role->description = $request->description;
+        }
+        //return $code_value;
+        */
+        /////////////////////////////////// VERSI BENER ///////////////////////
+        /*
+        $role = new Role();
+        //$role->id = Auth()->id();
+        //$role1 = Role::orderBy('id','desc')->first();
+        //$role->code = 'RO'.str_pad($role1->id + 1, 4, "0", STR_PAD_LEFT);
+        //$role->code = 'RO'.str_pad($code_value->id + 1, 4, "0", STR_PAD_LEFT);
+        $role->code = $request->code;
+        $role->name = $request->name;
+        $role->description = $request->description;
         $role->save();
         return redirect('/role')->with('message1','Data Saved!');
+        */
+        //////////////////////////////////////////////////////////
+        
+        //$role = new Role();
+        //$role->id = Auth()->id();
+
+        //MULAI NGUBAH2
+        //$code_first_value = 'RO0001';
+        
+        //bikin variabel dulu nilai awalnya 1
+        //trus baru ketika mau bikin code cek dulu pake sembarang field misal id kosong
+        //maka isikan si field code ini pake nilai awal yg = 1
+        //terus baru deh lanjut kalo si id gak kosong tinggal nilai var awal +1
+        
+        $row = Role::count();
+        //$latestId = Role::orderBy('id')->first();
+        if($row == 0){
+            $role = new Role();
+            $role->code = 'RO0001';
+            $role->name = $request->name;
+            $role->description = $request->description;
+            $role->save();
+            return redirect('/role')->with('message1','Data Saved!');
+        }
+        else{
+            $role = new Role();
+            $role->id = Auth()->id();
+            $latestId = Role::orderBy('id','desc')->first();
+            $role->code = 'RO'.str_pad($latestId->id + 1, 4, "0", STR_PAD_LEFT);
+            $role->name = $request->name;
+            $role->description = $request->description;
+            $role->save();
+            return redirect('/role')->with('message1','Data Saved!');
+        }
+        
+        //////////////////////////////////////////////////////////
+        //$role = new Role();
+        //$role->name = $request->name;
+        //$role->description = $request->description;
+        //$role->save();
+        //return redirect('/role')->with('message1','Data Saved!');
+        
+
     }
 
     /**
@@ -92,8 +187,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role = Role::find($id);
-        return view('role.view',compact('role'));
+        //
     }
 
     /**
@@ -121,7 +215,7 @@ class RoleController extends Controller
         $role->name = $request->input('name');
         $role->description = $request->input('description');
         $role->save();
-        return redirect('/role')->with('message2','Data Updated!');
+        return redirect('/role')->with('message2','Data Updated !');
     }
 
     /**
@@ -139,8 +233,7 @@ class RoleController extends Controller
 }
 
 /*
-// utn keperluan delete data tp pake fave icon
-<!--
+// utk keperluan delete data tp pake fave icon
 <form action="{{url("role/{$rol->id}")}}" method="post"
 	id="delete-form-{{$rol->id}}" style="display: none;">
 	@csrf
@@ -153,5 +246,4 @@ class RoleController extends Controller
 	document.getElementById('delete-form-{{$rol->id}}').submit();">
 	<i class="fa fa-trash" style="color:black"></i>
 </a>
--->
 */

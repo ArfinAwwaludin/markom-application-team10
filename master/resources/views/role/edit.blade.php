@@ -23,7 +23,7 @@
     
         <div class="card-footer text-right">
             <button type="submit" class="btn btn-primary">Update</button>
-            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+            <a href="{{url('/role')}}" type="button" class="btn btn-warning">Cancel</a>
         </div>
     </div>
 </form>

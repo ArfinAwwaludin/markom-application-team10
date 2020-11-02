@@ -23,7 +23,7 @@
 						<input value="{{request('keyword2')}}" class="form-control" type="text" name="keyword2" placeholder="- Select Role Name -">
 					</div>
 					<div class="col">
-						<input value="{{request('keyword3')}}" class="form-control" type="text" name="keyword3" placeholder="Created">
+						<input value="{{request('keyword3')}}" class="form-control" id="dateRole" type="text" name="keyword3" placeholder="Created">
 					</div>
 					<div class="col">
 						<input value="{{request('keyword4')}}" class="form-control" type="text" name="keyword4" placeholder="Created By">
@@ -53,10 +53,10 @@
 				<tbody>
 					@foreach ($role as $rol)
 					<tr>
-						<td>{{$rol->id}}</td>
+						<td>{{$loop->iteration}}</td>
 						<td>{{$rol->code}}</td>
 						<td>{{$rol->name}}</td>
-						<td>{{$rol->created_date}}</td>
+						<td>{{$rol->created_date->format('d/m/Y')}}</td>
 						<td>{{$rol->created_by}}</td>
 						<td>
 							<a href="{{"role/{$rol->id}"}}" data-toggle="modal" data-target="#viewRole{{$rol->id}}">
@@ -120,10 +120,10 @@
 		</div>
 
 	</div>
-	
+
     @if (session()->get('message1'))
     <div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
-		<strong>{{session()->get('message1')}}</strong> New role has been add with code <strong>{{$rol->code}}</strong> !
+		<strong>{{session()->get('message1')}}</strong> New role has been add with code <strong>{{$rol->code}} !</strong> 
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -141,7 +141,7 @@
     
     @if (session()->get('message3'))
 	<div class="alert alert-info mx-auto my-3" style="max-width: 80rem;">
-		<strong>{{session()->get('message3')}}</strong> Data role has been deleted !
+		<strong>{{session()->get('message3')}}</strong> Data role with code <strong>$rol->code</strong> has been deleted !
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
