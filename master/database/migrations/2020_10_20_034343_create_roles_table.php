@@ -22,7 +22,7 @@ class CreateRolesTable extends Migration
             $table->string('created_by',50)->default('Administrator'); //temporary
             $table->dateTime('created_date')->useCurrent(); //temporary
             $table->string('updated_by',50)->nullable();
-            $table->dateTime('updated_date')->nullable();
+            $table->dateTime('updated_date')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
         });
     }
 

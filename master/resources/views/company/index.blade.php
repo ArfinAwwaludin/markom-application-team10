@@ -1,7 +1,7 @@
 @extends('company')
 
 @section('main')
-	<div class="card mx-auto my-3" style="max-width: 80rem;">
+	<div class="card mx-auto my-3">
 		<div class="card-header text-white bg-primary">
 			<h5>List Company</h5>
 		</div>
@@ -9,7 +9,7 @@
 		<div class="card-body">
 			<div class="card-body bg-light">
 				<a href="{{url('/')}}">Home</a> <span>/</span>
-				<a href="{{url('/master')}}">Master</a> <span>/</span>
+				<a href="#">Master</a> <span>/</span>
 				<a>List Company</a>
 			</div>
 

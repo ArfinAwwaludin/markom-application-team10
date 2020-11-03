@@ -1,74 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<head>
 
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Home</title>
-  </head>
-  <body>
+  <title>Home</title>
 
-    <div class="card mx-auto my-3" style="max-width: 80rem;">
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="{{url('/')}}">HOME</a>
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading"><strong>MARKOM 1.5</strong></div>
+
+      <div class="list-group list-group-flush">        
           
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="btn-group mx-3">
-            <a href="{{url('/master')}}" class="btn btn-secondary-light border border-secondary">master</a>
-            <button type="button" class="btn btn-secondary-light border border-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{{url('/company')}}">Company</a>
-                  <a class="dropdown-item" href="{{url('/employee')}}">Employee</a>
-                  <a class="dropdown-item" href="{{url('/role')}}">Role</a>
-            </div>
-          </div>
-
-          <!--
-          <div class="collapse navbar-collapse btn-group" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto"> 
-              <li class="nav-item">
-                <a class="nav-link" href="{{url('/master')}}">Master</a>
-              </li> 
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Master
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{url('/company')}}">Company</a>
-                  <a class="dropdown-item" href="{{url('/employee')}}">Employee</a>
-                  <a class="dropdown-item" href="{{url('/role')}}">Role</a>
-                </div>
-              </li>
+          <a href="#" class="list-group-item list-group-item-action bg-light" 
+            type="button" data-toggle="collapse" data-target="#collapseExample" 
+            aria-expanded="false" aria-controls="collapseExample">
+            Master
+          </a>
+          
+          <div class="collapse" id="collapseExample">
+            <ul>
+              <div class="my-1">
+                <a href="{{url('/company')}}" class="btn btn-block text-left">Company</a>
+              </div>
+              <div class="my-1">
+                <a href="{{url('/employee')}}" class="btn btn-block text-left">Employee</a>
+              </div>
+              <div class="my-1">
+                <a href="{{url('/role')}}" class="btn btn-block text-left">Role</a>
+              </div>
             </ul>
           </div>
-          -->
 
-        </nav>
-
+          <a href="#" class="list-group-item list-group-item-action bg-light" 
+            type="button" data-toggle="collapse" data-target="#" 
+            aria-expanded="false" aria-controls="collapseExample">
+            Transaction
+          </a> <a></a>
+        
+      </div>
     </div>
+    <!-- /#sidebar-wrapper -->
 
-    <div class="card mx-auto my-3" style="max-width: 80rem;">
-        <h1 class="text-center my-5">Home</h1>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-light" id="menu-toggle">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Settings</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        
+        <div class="card mx-auto my-3">
+          <h1 class="text-center my-5">Home</h1>
+        </div>
+
+      </div>
     </div>
+    <!-- /#page-content-wrapper -->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </div>
+  <!-- /#wrapper -->
 
-  </body>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
 </html>

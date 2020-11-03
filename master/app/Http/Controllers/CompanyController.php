@@ -16,11 +16,6 @@ class CompanyController extends Controller
         return view('home');
     }
 
-    /*menampilkan page list master*/
-    public function master(){
-        return view('masterpage');
-    }
-
     /**
      * Display a listing of the resource.
      *

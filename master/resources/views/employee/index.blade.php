@@ -1,7 +1,7 @@
 @extends('employee')
 
 @section('main2')
-	<div class="card mx-auto my-3" style="max-width: 80rem;">
+	<div class="card mx-auto my-3">
 		<div class="card-header text-white bg-primary">
 			<h5>List Employee</h5>
 		</div>
@@ -9,7 +9,7 @@
 		<div class="card-body">
 			<div class="card-body bg-light">
 				<a href="{{url('/')}}">Home</a> <span>/</span>
-				<a href="{{url('/master')}}">Master</a> <span>/</span>
+				<a href="#">Master</a> <span>/</span>
 				<a>List Employee</a>
 			</div>
 
@@ -18,10 +18,10 @@
 					<div class="col-3">
 						<input class="form-control" type="text" name="" placeholder="Employee ID Number">
 					</div>
-					<div class="col-3.5">
+					<div class="col-2.5">
 						<input class="form-control" type="text" name="" placeholder="Employee Name">
 					</div>
-					<div class="col-3.5">
+					<div class="col-2">
 						<input class="form-control" type="text" name="" placeholder="- Select Company Name -">
 					</div>
 					<div class="col">
