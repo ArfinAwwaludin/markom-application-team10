@@ -5,19 +5,31 @@
         <div class="card-header text-white bg-primary">
             <h5>Edit Role</h5>
         </div>
-        
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="card-body">
-            <div class="form-group row my-2">
-                <div class="col">
-                    <label for="code" class="col col-form-label my-1">*Role Code</label>
-                    <label for="name" class="col col-form-label my-1">*Role Name</label>
-                    <label for="description" class="col col-form-label my-1">Description</label>
-                </div>
-                <div class="col">
-                    <input class="form-control my-2" type="text" name="code" value="{{$rol->code}}">
-                    <input class="form-control my-2" type="text" name="name" value="{{$rol->name}}">
-                    <input class="form-control my-2" type="text" name="description" value="{{$rol->description}}">
-                </div>
+            <div class="form-group form-inline">
+                <label for="code" class="col col-form-label">*Role Code</label>
+                <fieldset disabled>
+                    <input class="form-control" type="text" name="code" value="{{$rol->code}}">
+                </fieldset>
+            </div>
+            <div class="form-group form-inline">
+                <label for="name" class="col col-form-label">*Role Name</label>
+                <input class="form-control" value="{{old('name', $rol->name)}}" type="text" name="name">
+            </div>
+            <div class="form-group form-inline">
+                <label for="description" class="col col-form-label">Description</label>
+                <input class="form-control" value="{{old('description', $rol->description)}}" type="text" name="description">
             </div>
         </div>
     
