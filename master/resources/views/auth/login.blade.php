@@ -150,7 +150,6 @@
                                                 Don't have an account?
                                                 <a href="{{ route('register') }}">Register</a>
                                             </span>
-                                            
                                         </div>
                                     </div>
                                 </form>

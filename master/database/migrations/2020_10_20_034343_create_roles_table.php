@@ -23,6 +23,7 @@ class CreateRolesTable extends Migration
             $table->dateTime('created_date')->useCurrent(); //temporary
             $table->string('updated_by',50)->nullable();
             $table->dateTime('updated_date')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
+            $table->softDeletes("deleted_at",0);
         });
     }
 

@@ -159,7 +159,7 @@ class CompanyController extends Controller
             'phone' => 'numeric',
             'name'=>'required',
         ]);
-        $company->code = $request->code;
+        //$company->code = $request->code;
         $company->email = $request->email;
         $company->phone = $request->phone;
         $company->name = $request->name;

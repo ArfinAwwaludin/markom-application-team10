@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Company extends Model
@@ -12,6 +14,8 @@ class Company extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ['code','email','phone','name','address'];
+    use Blameable;
+    use SoftDeletes;
 
     public function employee()
     {
