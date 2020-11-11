@@ -3,38 +3,28 @@
 <div class="card">
     <div class="card-header text-white bg-primary">
         <h5>Add Role</h5>
-	</div>
-
-	@if ($errors->any())
-		<div class="alert alert-danger">
-			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
+    </div>
     
     <div class="card-body">
-		<div class="form-group form-inline">
-			<label for="code" class="col col-form-label">*Role Code</label>
-			<fieldset disabled>
-				<input class="form-control" type="text" name="code" placeholder="Auto Generated">
-			</fieldset>
-		</div>
-		<div class="form-group form-inline">
-			<label for="name" class="col col-form-label">*Role Name</label>
-			<input class="form-control" value="{{old('name')}}" type="text" name="name" placeholder="Type Role Name">
-		</div>
-		<div class="form-group form-inline">
-			<label for="description" class="col col-form-label">Description</label>
-			<input class="form-control" value="{{old('description')}}" type="text" name="description" placeholder="Type Description">
-		</div>
-	</div>
+        <div class="form-group row my-2">
+            <div class="col">
+                <label for="code" class="col col-form-label my-1">*Role Code</label>
+                <label for="name" class="col col-form-label my-1">*Role Name</label>
+                <label for="description" class="col col-form-label my-1">Description</label>
+            </div>
+            <div class="col">
+                <fieldset disabled>
+                <input class="form-control my-2" type="text" name="code" placeholder="Auto Generated">
+                </fieldset>
+                <input class="form-control my-2" type="text" name="name" placeholder="Type Role Name">
+                <input class="form-control my-2" type="text" name="description" placeholder="Type Description">
+            </div>
+        </div>
+    </div>
 
     <div class="card-footer text-right">
         <button type="submit" class="btn btn-primary">Save</button>
-		<a href="{{url('/role')}}" type="button" class="btn btn-warning">Cancel</a>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
     </div>
 </div>
 </form>

@@ -147,13 +147,9 @@ class RoleController extends Controller
         //trus baru ketika mau bikin code cek dulu pake sembarang field misal id kosong
         //maka isikan si field code ini pake nilai awal yg = 1
         //terus baru deh lanjut kalo si id gak kosong tinggal nilai var awal +1
-
-        $this->validate($request, [
-            'name'=>'required|alpha|unique:roles',
-            'description'=>'required'
-        ]);
         
         $row = Role::count();
+        //$latestId = Role::orderBy('id')->first();
         if($row == 0){
             $role = new Role();
             $role->code = 'RO0001';
@@ -215,10 +211,6 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $role = Role::find($id);
-        $this->validate($request, [
-            'name'=>'required|alpha|unique:roles',
-            'description'=>'required'
-        ]);
         $role->code = $request->input('code');
         $role->name = $request->input('name');
         $role->description = $request->input('description');

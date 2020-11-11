@@ -129,14 +129,6 @@
     })
   </script>
 
-  @if (count($errors) > 0)
-  <script type="text/javascript">
-    $( document ).ready(function() {
-      $('#add-role').modal('show');
-    });
-  </script>
-  @endif
-
 </body>
 
 </html>
